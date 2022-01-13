@@ -59,6 +59,33 @@
         })
     }
 
+    function searchMoney() {
+      let TestDataClass = ncmb.DataStore(db);
+      let money = parseInt($("#money").val());
+      TestDataClass.equalTo("money", moeny).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
+    function searchMoneyLT() {
+      let TestDataClass = ncmb.DataStore(db);
+      let money = parseInt($("#money").val());
+      TestDataClass.lessThan("money", money).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
+    function searchMoneyGT() {
+      let TestDataClass = ncmb.DataStore(db);
+      let money = parseInt($("#money").val());
+      TestDataClass.greaterThan("money", money).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
     function showResults(results) {
       // テーブルのヘッダを生成
       let msg = "<table><tr><th>name</th><th>time</th><th>money</th><th>distance</th></tr>";
@@ -86,7 +113,11 @@
   </div>
   <div>
     <label for="time">time:</label>
-    <input id="time" type="number" placeholder="to time">
+    <input id="time" type="number" placeholder="time">
+  </div>
+  <div>
+    <label for="money">money:</label>
+    <input id="money" type="number" placeholder="money">
   </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
@@ -95,6 +126,10 @@
     <button class="btn" onclick="searchTimeLT()">Time &lt</button>
     <button class="btn" onclick="searchTime()">Time</button>
     <button class="btn" onclick="searchTimeGT()">Time &gt</button>
+    <br>
+    <button class="btn" onclick="searchMoneyLT()">Money &lt</button>
+    <button class="btn" onclick="searchMoney()">Money</button>
+    <button class="btn" onclick="searchMoneyGT()">Money &gt</button>
   </div>
   <div id="message">message area</div>
 </body>
